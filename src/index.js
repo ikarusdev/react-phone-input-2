@@ -229,7 +229,7 @@ class PhoneInput extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = onLoad(props);
+    this.state = this.onLoad(props);
   }
 
   componentDidMount() {
@@ -250,7 +250,8 @@ class PhoneInput extends React.Component {
     } else if (prevProps.value !== this.props.value) {
       this.updateFormattedNumber(this.props.value);
     } else if (prevProps.localization !== this.props.localization) {
-      this,setState(onLoad(this.props))
+      console.log(`Localization changed...`)
+      this.setState(this.onLoad(this.props))
     }
   }
 
