@@ -171,8 +171,7 @@ class PhoneInput extends React.Component {
     }
   }
 
-  constructor(props) {
-    super(props);
+  onLoad(props) {
     const { onlyCountries, preferredCountries, hiddenAreaCodes } = new CountryData(
       props.enableAreaCodes, props.enableTerritories, props.regions,
       props.onlyCountries, props.preferredCountries, props.excludeCountries, props.preserveOrder,
@@ -211,7 +210,7 @@ class PhoneInput extends React.Component {
 
     const highlightCountryIndex = onlyCountries.findIndex(o => o == countryGuess);
 
-    this.state = {
+    return {
       showDropdown: props.showDropdown,
 
       formattedNumber,
@@ -225,7 +224,12 @@ class PhoneInput extends React.Component {
       freezeSelection: false,
       debouncedQueryStingSearcher: debounce(this.searchCountry, 250),
       searchValue: '',
-    };
+    }
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = onLoad(props);
   }
 
   componentDidMount() {
@@ -243,9 +247,10 @@ class PhoneInput extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.country !== this.props.country) {
       this.updateCountry(this.props.country);
-    }
-    else if (prevProps.value !== this.props.value) {
+    } else if (prevProps.value !== this.props.value) {
       this.updateFormattedNumber(this.props.value);
+    } else if (prevProps.localization !== this.props.localization) {
+      this,setState(onLoad(this.props))
     }
   }
 
