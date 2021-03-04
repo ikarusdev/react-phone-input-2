@@ -216,7 +216,7 @@ class PhoneInput extends React.Component {
 
       formattedNumber,
       onlyCountries,
-      preferredCountries,
+      preferredCountries: [...preferredCountries],
       hiddenAreaCodes,
       selectedCountry: countryGuess,
       highlightCountryIndex,
