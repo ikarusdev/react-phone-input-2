@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const TARGET = process.env.TARGET;
+const TARGET ='build_js';
 const ROOT_PATH = path.resolve(__dirname);
 const nodeModulesDir = path.join(ROOT_PATH, 'node_modules');
 
